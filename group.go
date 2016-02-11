@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -13,10 +15,10 @@ import "C"
 // a labelled box (though some systems make this box invisible).
 // You can use this to group related controls together.
 type Group struct {
-	c	*C.uiControl
-	g	*C.uiGroup
+	c *C.uiControl
+	g *C.uiGroup
 
-	child		Control
+	child Control
 }
 
 // NewGroup creates a new Group.

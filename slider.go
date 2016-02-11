@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -21,10 +23,10 @@ var sliders = make(map[*C.uiSlider]*Slider)
 // a range of integers. The user can drag a pointer on the bar to
 // select an integer.
 type Slider struct {
-	c	*C.uiControl
-	s	*C.uiSlider
+	c *C.uiControl
+	s *C.uiSlider
 
-	onChanged		func(*Slider)
+	onChanged func(*Slider)
 }
 
 // NewSlider creates a new Slider. TODO limits

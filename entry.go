@@ -4,6 +4,8 @@
 // I've had similar issues with checkboxes on libui
 // something's wrong with NSMapTable
 
+// +build !js
+
 package ui
 
 import (
@@ -24,10 +26,10 @@ var entries = make(map[*C.uiEntry]*Entry)
 // Entry is a Control that represents a space that the user can
 // type a single line of text into.
 type Entry struct {
-	c	*C.uiControl
-	e	*C.uiEntry
+	c *C.uiControl
+	e *C.uiEntry
 
-	onChanged		func(*Entry)
+	onChanged func(*Entry)
 }
 
 // NewEntry creates a new Entry.

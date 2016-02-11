@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -12,8 +14,8 @@ import "C"
 // ProgressBar is a Control that represents a horizontal bar that
 // is filled in progressively over time as a process completes.
 type ProgressBar struct {
-	c	*C.uiControl
-	p	*C.uiProgressBar
+	c *C.uiControl
+	p *C.uiProgressBar
 }
 
 // NewProgressBar creates a new ProgressBar.

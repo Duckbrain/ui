@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -12,8 +14,8 @@ import "C"
 // Separator is a Control that represents a horizontal line that
 // visually separates controls.
 type Separator struct {
-	c	*C.uiControl
-	s	*C.uiSeparator
+	c *C.uiControl
+	s *C.uiSeparator
 }
 
 // NewSeparator creates a new horizontal Separator.

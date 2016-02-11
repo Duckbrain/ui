@@ -1,10 +1,12 @@
 // 11 december 2015
 
+// +build !js
+
 package ui
 
 import (
-	"runtime"
 	"errors"
+	"runtime"
 	"sync"
 	"unsafe"
 )
@@ -67,9 +69,9 @@ func Quit() {
 // These prevent the passing of Go functions into C land.
 // TODO make an actual sparse list instead of this monotonic map thingy
 var (
-	qmmap = make(map[uintptr]func())
+	qmmap     = make(map[uintptr]func())
 	qmcurrent = uintptr(0)
-	qmlock sync.Mutex
+	qmlock    sync.Mutex
 )
 
 // QueueMain queues f to be executed on the GUI thread when

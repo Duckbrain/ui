@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -22,12 +24,12 @@ var windows = make(map[*C.uiWindow]*Window)
 // entirety of the window. Though a Window is a Control,
 // a Window cannot be the child of another Control.
 type Window struct {
-	c	*C.uiControl
-	w	*C.uiWindow
+	c *C.uiControl
+	w *C.uiWindow
 
-	child		Control
+	child Control
 
-	onClosing		func(w *Window) bool
+	onClosing func(w *Window) bool
 }
 
 // NewWindow creates a new Window.

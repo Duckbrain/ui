@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -22,10 +24,10 @@ var comboboxes = make(map[*C.uiCombobox]*Combobox)
 // Combobox also has an entry field that the user can type an alternate
 // choice into.
 type Combobox struct {
-	co	*C.uiControl
-	c	*C.uiCombobox
+	co *C.uiControl
+	c  *C.uiCombobox
 
-	onSelected		func(*Combobox)
+	onSelected func(*Combobox)
 }
 
 // NewCombobox creates a new Combobox.

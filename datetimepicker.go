@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -12,8 +14,8 @@ import "C"
 // DateTimePicker is a Control that represents a field where the user
 // can enter a date and/or a time.
 type DateTimePicker struct {
-	c	*C.uiControl
-	d	*C.uiDateTimePicker
+	c *C.uiControl
+	d *C.uiDateTimePicker
 }
 
 // NewDateTimePicker creates a new DateTimePicker that shows

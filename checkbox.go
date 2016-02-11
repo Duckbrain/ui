@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -21,10 +23,10 @@ var checkboxes = make(map[*C.uiCheckbox]*Checkbox)
 // side. When the user clicks the checkbox, a check mark will appear
 // in the box; clicking it again removes the check.
 type Checkbox struct {
-	co	*C.uiControl
-	c	*C.uiCheckbox
+	co *C.uiControl
+	c  *C.uiCheckbox
 
-	onToggled		func(*Checkbox)
+	onToggled func(*Checkbox)
 }
 
 // NewCheckbox creates a new Checkbox with the given text as its label.

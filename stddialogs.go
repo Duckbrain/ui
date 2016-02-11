@@ -1,5 +1,7 @@
 // 20 december 2015
 
+// +build !js
+
 package ui
 
 // #include "ui.h"

@@ -1,5 +1,7 @@
 // 12 december 2015
 
+// +build !js
+
 package ui
 
 import (
@@ -11,13 +13,13 @@ import "C"
 
 // RadioButtons is a Control that represents a set of checkable
 // buttons from which exactly one may be chosen by the user.
-// 
+//
 // Due to platform-specific limitations, it is impossible for a
 // RadioButtons to have no button selected (unless there are no
 // buttons).
 type RadioButtons struct {
-	c	*C.uiControl
-	r	*C.uiRadioButtons
+	c *C.uiControl
+	r *C.uiRadioButtons
 }
 
 // NewRadioButtons creates a new RadioButtons.

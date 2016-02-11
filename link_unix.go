@@ -1,5 +1,6 @@
 // +build !windows
 // +build !darwin
+// +build !js
 
 // 11 december 2015
 
