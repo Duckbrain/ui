@@ -1,3 +1,5 @@
+// +build js
+
 package ui
 
 import "github.com/gopherjs/gopherjs/js"

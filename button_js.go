@@ -1,3 +1,5 @@
+// +build js
+
 package ui
 
 import "github.com/gopherjs/gopherjs/js"
@@ -14,7 +16,10 @@ type Button struct {
 func NewButton(text string) *Button {
 	b := new(Button)
 	b.e = js.Global.Get("document").Call("createElement", "button")
-	// TODO Event handler
+	b.SetText(text)
+	b.e.Call("addEventListener", "click", func() {
+		b.onClicked(b)
+	})
 	return b
 }
 

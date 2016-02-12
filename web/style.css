@@ -1,0 +1,22 @@
+body {
+	background-color: #208c71;
+}
+
+.window {
+	position: fixed;
+	background-color: white;
+}
+
+.window-title {
+	
+	height: 20px;
+	background-color: blue;
+}
+
+.box {
+	display: flex;
+}
+
+.box-vertical {
+	flex-direction: column;
+}
