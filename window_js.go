@@ -19,8 +19,8 @@ type Window struct {
 	body         *js.Object
 	child        Control
 	onClosing    func(w *Window) bool
-	dragX, dragY int64
-	posX, posY   int64
+	dragX, dragY int
+	posX, posY   int
 }
 
 // NewWindow creates a new Window.
@@ -40,26 +40,27 @@ func NewWindow(title string, width int, height int, hasMenubar bool) *Window {
 
 	titleBar.Get("classList").Call("add", "window-title")
 	titleBar.Call("addEventListener", "mousedown", func(e *js.Object) {
-		w.dragX = e.Get("clientX").Int64() - w.posX
-		w.dragY = e.Get("clientY").Int64() - w.posY
+		w.dragX = e.Get("clientX").Int() - w.posX
+		w.dragY = e.Get("clientY").Int() - w.posY
 		js.Global.Call("addEventListener", "mousemove", w.drag, true)
 	})
 	js.Global.Call("addEventListener", "mouseup", func(e *js.Object) {
 		js.Global.Call("removeEventListener", "mousemove", w.drag, true)
 	})
+	body := js.Global.Get("document").Get("body")
 
-	js.Global.Set("onbeforeunload", func() interface{} {
-		for _, win := range windows {
-			if win.onClosing != nil {
-				if !win.onClosing(win) {
-					return "Are you sure you want to close all windows?"
-				}
-			}
-		}
-		return nil
-	})
+	w.posX = body.Get("clientWidth").Int()/2 - width/2
+	w.posY = body.Get("clientHeight").Int()/2 - height/2
+	w.body.Get("style").Set("left", w.posX)
+	w.body.Get("style").Set("top", w.posY)
 
-	js.Global.Get("document").Get("body").Call("appendChild", w.body)
+	//TODO Edges to resize
+
+	//TODO Close button on windows
+
+	//TODO Title in Header
+
+	body.Call("appendChild", w.body)
 
 	return w
 }
@@ -106,8 +107,8 @@ func (w *Window) SetMargined(margined bool) {
 }
 
 func (w *Window) drag(e *js.Object) {
-	w.posX = e.Get("clientX").Int64() - w.dragX
-	w.posY = e.Get("clientY").Int64() - w.dragY
+	w.posX = e.Get("clientX").Int() - w.dragX
+	w.posY = e.Get("clientY").Int() - w.dragY
 	w.body.Get("style").Set("left", fmt.Sprintf("%vpx", w.posX))
 	w.body.Get("style").Set("top", fmt.Sprintf("%vpx", w.posY))
 }

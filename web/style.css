@@ -8,7 +8,7 @@ body {
 }
 
 .window-title {
-	
+	cursor: default;
 	height: 20px;
 	background-color: blue;
 }

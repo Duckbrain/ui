@@ -12,7 +12,18 @@ import "github.com/gopherjs/gopherjs/js"
 // nil. If package ui fails to initialize, Main returns an appropriate
 // error.
 func Main(f func()) error {
-	f()
+	js.Global.Set("onbeforeunload", func() interface{} {
+		for _, win := range windows {
+			if win.onClosing != nil {
+				if !win.onClosing(win) {
+					return "Are you sure you want to close all windows?"
+				}
+			}
+		}
+		return nil
+	})
+
+	js.Global.Get("document").Call("addEventListener", "DOMContentLoaded", f)
 	return nil
 }
 
